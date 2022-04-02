@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+ web:
+  build:
+   context: .
+  ports:
+  - 5000:5000
+  volumes:
+  - ./:/app
+
+ dbmongo:
+  image: mongo
+  ports:
+  - 27017:27017
+  environment:
+  - MONGO_INITDB_ROOT_USERNAME=root
+  - MONGO_INITDB_ROOT_PASSWORD=pass
+  volumes:
+  - mongo:/var/lib/mysql
+  - mongo_config:/etc/mysql
+
+volumes:
+  mongo:
+  mongo_config:
